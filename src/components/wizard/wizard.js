@@ -6,6 +6,8 @@ import SubGenreList from './steps/SubGenreList/SubGenreList'
 import AddSubgenreForm from './steps/AddSubgenreForm/AddSubgenreForm'
 import AddNewBookForm from './steps/AddNewBookForm/AddNewBookForm'
 import WizardHeader from './WizardHeader/WizardHeader'
+import axios from 'axios';
+import success from '../../success.png';
 
 class Wizard extends Component {
   state = {
@@ -115,7 +117,6 @@ class Wizard extends Component {
   handleAddNewSubgenreNext = (event) => {
     const { step } = this.state;
     const bookForm = { ...this.state.bookForm };
-    console.log(bookForm.isDescriptionRequired);
 
     if (!bookForm.isDescriptionRequired) {
       bookForm.isDescriptionRequired = false
@@ -148,8 +149,8 @@ class Wizard extends Component {
 
     this.setState({
       bookInfo: bookInfo
-    });  
-    
+    });
+
   }
 
   inputChangedHandler = (event) => {
@@ -166,18 +167,26 @@ class Wizard extends Component {
   }
 
   handleSubmit = (event) => {
-    // const collection = {
-    //   ...this.state.bookForm
-    // }
+    const collection = {
+      ...this.state.bookForm
+    }
+    const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+    const URL = 'https://my-json-server.typicode.com/Vampola/testdb/posts';
     //TODO - just a test fetch
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(response => response.json())
-      .then(json => console.log(json))
+    axios.post(PROXY_URL + URL, { collection })
+      .then(res => {
+        // console.log(res);
+        console.log(res.data);
+        this.setState({
+          step: 5
+        })
+      })
+  }
+  handleReset = () => {
     this.setState({
-      step: 5
+      step: 1
     })
   }
-
   render() {
     const { step } = this.state;
     const { library } = this.state;
@@ -256,32 +265,20 @@ class Wizard extends Component {
         )
       case 5:
         return (
-          <p>ggggg</p>
+          <Fragment>
+            <div className="icon">
+              <img src={success} alt="Logo" />
+            </div>
+            <p>Book added successfully</p>
+            <button className="btn btn-nav" onClick={this.handleReset}>Add another book</button>
+          </Fragment>
+
         )
       default: {
         return;
       }
-
     }
-
-
   }
-
 }
 
 export default Wizard;
-
-    // const genres = this.state.library.genres.map(genre => <li key={genre.id}>{genre.name}</li>)
-    // const subgenres = this.state.library.genres.map( genre => ( 
-    //   genre.subgenres.map( subgenre => (
-    //     // if(this.state.book === subgenres.id)
-    //     <li key={subgenre.id}>{subgenre.name}</li>
-    //   ))
-    //  ))
-    // const experiment = this.state.library.genres.filter( genre =>genre.id === this.state.book).map( genre => ( genre.subgenres.map( u => (
-    //   <li key={u.id}>{u.name}</li>
-    // )) ))
-    // const experiment = this.state.library.genres.map( genre => ( genre.subgenres.filter( u =>u.id === this.state.book).map( u => (
-    //   <li key={u.id}>{u.name}</li>
-    // )) ))
-    // <li key={subgenre.id}>{subgenre.name}</li>
