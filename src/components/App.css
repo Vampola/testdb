@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  max-width: 800px;
+    margin: 0 auto;
+}
+.app-container {
+  max-width: 800px;
+  border: 1px solid #bbc0c4;
+  padding: 20px;
+  margin-top: 20px;border-radius: 15px;
+}
+.wizard-header {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+.item-wrapper {
+  position: relative;
+}
+.header-item {
+  /* flex: 1 1 0;   */
+  /* padding-right: 40px; */
+  min-width: 170px;
+}
+.header-item:after {
+    display: block;
+    content: '---->';
+    top: 0px;
+    left: 125px;
+    position: absolute;
+    color: #bbc0c4; 
+}
+.header-item.last-step:after {
+  display: none;
+  content: '';
+}
+.header-item span{
+  background: #137088;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 100px;
+}
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+}
+.genres {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  margin: 30px 0;
+  padding: 0;
+}
+
+.genres li {
+  list-style-type: none;
+  border: 1px solid #bbc0c4;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 20px;
+  cursor: pointer;
+}
+.genres li.active {
+  background-color: #fbdd87;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn {
+  /* default for <button>, but needed for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 4px;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #FFFFFF;
+  background-color: #148cab;
+}
+
+/* old-school "down" effect on clic + color tweak */
+.btn:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+/* inverse colors on hover */
+.btn:hover {
+  border-color: #137088;
+  background-color: #137088;
+}
+
+/* Firefox: remove the inner border shown on focus */
+.btn::-moz-focus-inner {
+  border: none;
+}
+
+/* make sure we have a visible focus ring */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(20, 140, 171, 0.5),
+    0 0 0 1.5px rgba(20, 140, 171, 0.5);
+}
+.btn:disabled {
+  color: #000000;
+  border-color: #137088;
+  background-color: #ffffff;
+  cursor: not-allowed;
+}
+
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px; 
+  border: 1px solid #bbc0c4;
+  border-radius: 5px;
+  
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #148cab;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bbc0c4;
+  color: #757575;
+}
+.form-group-container {
+  display: flex;
+}
+.form-group-container .form-group {
+  margin-right: 20px;
+  width: 200px;
+}
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bbc0c4;
+  color: #757575;
+}
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bbc0c4;
+  color: #757575;
+  resize: none;
+}
+.date-form {
+  display: flex;
+  flex-direction: column;
+}
+input[type="date"] {
+  max-width: 200px;
+  font-family: inherit;
+}
+input[type="number"] {
+  max-width: 160px;
+}
+select.book-format {
+  max-width: 200px;
+}
